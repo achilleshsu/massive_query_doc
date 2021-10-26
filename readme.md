@@ -1,1 +1,2 @@
 
+[kafka](connectors/kafka.md)
