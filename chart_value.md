@@ -1,4 +1,4 @@
-# massive query helm chart 參數說明 #
+# Massive Query helm chart 參數說明 #
 
 #### 編輯日期:2021/10/27 ####
 #### chart 版本號: 0.2.2 ####
