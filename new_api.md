@@ -80,6 +80,63 @@ DELETE 服務路徑/v1/api/subscriptionId/{subscriptionId}/catalogs/{catalogsNam
 | --- | --- | --- |
 | 200 | OK | 正常建立 |
 | 404 | Not Found | API路徑錯誤或服務器尚未啟動 |
-| 401 | Unauthorized | 權限不對或是 token 已過期 |
+| 401 | Invalid credentials | 權限不對或是 token 已過期 |
 | 500 | Internal server error | DB 連線錯誤或其他問題 |
 
+### 查詢 catalog API ###
+#### API 路徑 ####
+GET 服務路徑/v1/api/subscriptionId/{subscriptionId}/catalogs
+#### 需要 header 整理 ####
+| header 參數名稱 | 內容 | 說明 | 
+| --- | --- | --- |
+| Content-Type | application/json | |
+| Authorization | Bearer {ssoToken} | sso 啟用時 |
+| Authorization | Basic {base64 user:password} | 當sso沒有啟用時 |
+| Cookie | EIToken={ssoToken},WISEUser={userName} | sso 啟用時 |
+
+#### 收到回覆 ####
+| 狀態馬 | 內容 | 說明 | 
+| --- | --- | --- |
+| 200 | OK | 正常建立 |
+| 404 | Not Found | API路徑錯誤或服務器尚未啟動 |
+| 401 | Invalid credentials | 權限不對或是 token 已過期 |
+| 500 | Internal server error | DB 連線錯誤或其他問題 |
+
+#### 收到回覆範例 ####
+```dtd
+[iceberg,system
+        ]
+```
+
+### SQL API ###
+#### API 路徑 ####
+PUT 服務路徑/v1/api/execute
+#### 需要 header 整理 ####
+| header 參數名稱 | 內容 | 說明 | 
+| --- | --- | --- |
+| Content-Type | application/json | |
+| Authorization | Bearer {ssoToken} | sso 啟用時 |
+| Authorization | Basic {base64 user:password} | 當sso沒有啟用時 |
+| Cookie | EIToken={ssoToken},WISEUser={userName} | sso 啟用時 |
+
+#### body 輸入內容範例 ####
+```dtd
+show catalogs
+```
+注意不要有分號(;)
+#### 收到回覆 ####
+| 狀態馬 | 內容 | 說明 | 
+| --- | --- | --- |
+| 200 | OK | 正常建立 |
+| 404 | Not Found | API路徑錯誤或服務器尚未啟動 |
+| 401 | Invalid credentials | 權限不對或是 token 已過期 |
+| 500 | Internal server error | DB 連線錯誤或其他問題 |
+
+#### 收到回覆範例 ####
+```dtd
+[
+        {
+        "Catalog": "system"
+        }
+]
+```
