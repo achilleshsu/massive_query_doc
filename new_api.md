@@ -1,7 +1,7 @@
 # Massive Query 新增的API #
 
 ###### 撰寫日期:2021/10/28 ######
-###### 撰寫版本:minerva-0.0.4 ######
+###### 撰寫版本:minerva-0.0.5 ######
 ###### 文件撰寫人: achilles ######
 
 ---------------------------------------
@@ -127,7 +127,7 @@ GET 服務路徑/v1/api/subscriptionId/{subscriptionId}/catalogs
 
 #### 收到回覆範例 ####
 ```dtd
-[iceberg,system
+["iceberg","system"
         ]
 ```
 
@@ -195,7 +195,7 @@ GET 服務路徑/v1/api/catalogs/{catalogName}/schemas
 
 #### 收到回覆範例 ####
 ```dtd
-[achillestest,default,demo,demo2,hive_prod,hospital,hospital2,hospital5,hospital6,hospital7,information_schema,local,performance,spark_catalog,test,test2
+["achillestest","default","demo","demo2","hive_prod","hospital","hospital2","hospital5","hospital6","hospital7","information_schema","local","performance","spark_catalog","test","test2"
 ]
 ```
 
@@ -229,42 +229,7 @@ GET 服務路徑/v1/api/catalogs/{catalogName}/schemas/{schemaName}/tables
 
 #### 收到回覆範例 ####
 ```dtd
-[cchtest,sstest,table1,test,test1,test22
-]
-```
-
----------------------------------------
-
-### 查詢 columns API ###
-#### API 路徑 ####
-GET 服務路徑/v1/api/catalogs/{catalogName}/schemas/{schemaName}/tables/{tableName}/columns
-
-#### 需要 header 整理 ####
-| header 參數名稱 | 內容 | 說明 | 
-| --- | --- | --- |
-| Content-Type | application/json | |
-| Authorization | Bearer {ssoToken} | sso 啟用時 |
-| Authorization | Basic {base64 user:password} | 當sso沒有啟用時 |
-| Cookie | EIToken={ssoToken},WISEUser={userName} | sso 啟用時 |
-
-#### 傳入路徑參數 ####
-| 參數名稱 | 內容 | 說明 | 
-| --- | --- | --- |
-| catalogName | catalog名稱 | 從catalog列表中列出來的名稱 |
-| schemaName | schema(database)名稱 | 從schemas列表中列出來的名稱 |
-| tableName | table名稱 | 從tables列表中列出來的名稱 |
-
-#### 收到回覆 ####
-| 狀態馬 | 內容 | 說明 | 
-| --- | --- | --- |
-| 200 | OK | 正常建立 |
-| 404 | Not Found | API路徑錯誤或服務器尚未啟動 |
-| 401 | Invalid credentials | 權限不對或是 token 已過期 |
-| 500 | Internal server error | DB 連線錯誤或其他問題 |
-
-#### 收到回覆範例 ####
-```dtd
-[ordert,name
+["cchtest","sstest","table1","test","test1","test22"
 ]
 ```
 
